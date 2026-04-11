@@ -11,7 +11,7 @@ def signup(email: str = Form(...), password: str = Form(...)):
             "email": email,
             "password": password
         })
-        return {"message": "User created", "user": res.user}
+        return {"message": "User created"}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -25,8 +25,7 @@ def login(email: str = Form(...), password: str = Form(...)):
         })
 
         return {
-            "access_token": res.session.access_token,
-            "user": res.user
+            "access_token": res.session.access_token
         }
 
     except Exception:

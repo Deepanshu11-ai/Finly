@@ -8,7 +8,6 @@ def get_current_user(authorization: str = Header(None)):
 
     try:
         token = authorization.split(" ")[1]
-
         user = supabase.auth.get_user(token)
 
         if not user or not user.user:
@@ -17,4 +16,4 @@ def get_current_user(authorization: str = Header(None)):
         return user.user.id
 
     except Exception:
-        raise HTTPException(status_code=401, detail="Invalid or expired token")
+        raise HTTPException(status_code=401, detail="Invalid token")
