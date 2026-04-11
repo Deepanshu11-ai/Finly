@@ -8,4 +8,4 @@ def extract_text(file_bytes):
     for page in pdf.pages:
         text += page.extract_text() or ""
 
-    return text
+    return text.replace("\n", " ").strip()

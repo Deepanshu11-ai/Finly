@@ -6,21 +6,50 @@
 </head>
 <body>
 
-<h2>Insurance AI Dashboard 🧠</h2>
+<div class="navbar">
+    <h1>Insurance AI Dashboard 🧠</h1>
+    <div class="navbar-right">
+        <span id="userEmail"></span>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+    </div>
+</div>
 
+<div class="container">
+
+<!-- Upload -->
 <div class="card">
-    <h3>Upload Policy</h3>
-    <input type="file" id="file"><br>
-    <button onclick="upload()">Upload</button>
+    <h3>📄 Upload Policy</h3>
+    <input type="file" id="file" accept=".pdf,.txt,.doc,.docx"><br>
+    <button onclick="upload()">Upload Document</button>
     <p id="uploadMsg"></p>
 </div>
 
+<!-- Chat -->
 <div class="card">
-    <h3>Ask Question</h3>
-    <input id="question" placeholder="Ask something"><br>
+    <h3>💬 Ask Question</h3>
+    <input id="question" placeholder="Ask something about your policy"><br>
     <button onclick="ask()">Ask</button>
+    <div id="answer" class="answer-box"></div>
+</div>
 
-    <p id="answer"></p>
+<!-- Simulator -->
+<div class="card">
+    <h3>⚡ What-if Simulator</h3>
+    <input id="scenario" placeholder="What if..."><br>
+    <button onclick="simulate()">Simulate</button>
+    <div id="result" class="answer-box"></div>
+</div>
+
+<!-- Analysis -->
+<div class="card">
+    <h3>📊 Policy Insights</h3>
+
+    <button onclick="analyze('coverage')">Coverage</button>
+    <button onclick="analyze('highlight')">Highlights</button>
+
+    <div id="analysis" class="answer-box"></div>
+</div>
+
 </div>
 
 <script src="app.js"></script>

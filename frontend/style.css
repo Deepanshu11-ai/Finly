@@ -1,39 +1,146 @@
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background: #0f172a;
     color: white;
-    text-align: center;
+    margin: 0;
+}
+
+.navbar {
+    background: #1e293b;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #3b82f6;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.navbar-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navbar-right span {
+    font-size: 14px;
+    min-width: 150px;
+}
+
+.logout-btn {
+    background: #ef4444;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
 }
 
 .container {
-    margin-top: 50px;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.auth-card {
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.auth-card h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.auth-card h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-card p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.auth-card a {
+    color: #3b82f6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.auth-card a:hover {
+    text-decoration: underline;
 }
 
 input, button {
     padding: 10px;
-    margin: 10px;
+    margin: 10px 5px;
     border-radius: 8px;
     border: none;
+}
+
+input {
+    width: calc(100% - 20px);
+    background: #0f172a;
+    color: white;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: #64748b;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid #3b82f6;
 }
 
 button {
     background: #3b82f6;
     color: white;
     cursor: pointer;
+    width: calc(100% - 10px);
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.card {
-    background: #1e293b;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    margin: auto;
-}
-
-.error {
-    color: red;
+button:hover {
+    background: #2563eb;
 }
 
 .success {
-    color: lightgreen;
+    color: #86efac;
+    font-weight: bold;
 }
+
+.error {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.answer-box {
+    margin-top: 10px;
+    padding: 15px;
+    background: #020617;
+    border-radius: 8px;
+    border-left: 4px solid #3b82f6;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.tag-green { color: lightgreen; }
+.tag-red { color: red; }
+.tag-yellow { color: orange; }

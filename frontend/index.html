@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Insurance AI - Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    <div class="card">
-        <h2>Login</h2>
+    <div class="card auth-card">
+        <h2>Insurance AI 🧠</h2>
+        
+        <div id="loginForm">
+            <h3>Login</h3>
+            <input id="email" placeholder="Email" type="email"><br>
+            <input id="password" type="password" placeholder="Password"><br>
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="#" onclick="toggleForm(); return false;">Sign up</a></p>
+        </div>
 
-        <input id="email" placeholder="Email"><br>
-        <input id="password" type="password" placeholder="Password"><br>
-
-        <button onclick="login()">Login</button>
+        <div id="signupForm" style="display:none;">
+            <h3>Create Account</h3>
+            <input id="signupEmail" placeholder="Email" type="email"><br>
+            <input id="signupPassword" type="password" placeholder="Password (min 6 chars)"><br>
+            <input id="signupPasswordConfirm" type="password" placeholder="Confirm Password"><br>
+            <button onclick="signup()">Sign Up</button>
+            <p>Already have an account? <a href="#" onclick="toggleForm(); return false;">Login</a></p>
+        </div>
 
         <p id="msg"></p>
     </div>

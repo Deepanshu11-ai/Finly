@@ -16,7 +16,4 @@ def chat(question: str = Form(...), user_id: str = Depends(get_current_user)):
 
     answer = generate_answer(question, chunks)
 
-    return {
-        "answer": answer,
-        "sources": chunks
-    }
+    return {"answer": answer}

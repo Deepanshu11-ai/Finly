@@ -3,7 +3,8 @@ import os
 
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 
-def get_embedding(text):
+def get_embeddings(texts):
+
     response = requests.post(
         "https://api.jina.ai/v1/embeddings",
         headers={
@@ -11,7 +12,7 @@ def get_embedding(text):
             "Content-Type": "application/json"
         },
         json={
-            "input": text,
+            "input": texts,
             "model": "jina-embeddings-v2-base-en"
         }
     )
@@ -21,4 +22,8 @@ def get_embedding(text):
     if "data" not in data:
         raise Exception(data)
 
-    return data["data"][0]["embedding"]
+    return [item["embedding"] for item in data["data"]]
+
+
+def get_embedding(text):
+    return get_embeddings([text])[0]
