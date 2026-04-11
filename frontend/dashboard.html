@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Insurance AI Dashboard 🧠</h2>
+
+<div class="card">
+    <h3>Upload Policy</h3>
+    <input type="file" id="file"><br>
+    <button onclick="upload()">Upload</button>
+    <p id="uploadMsg"></p>
+</div>
+
+<div class="card">
+    <h3>Ask Question</h3>
+    <input id="question" placeholder="Ask something"><br>
+    <button onclick="ask()">Ask</button>
+
+    <p id="answer"></p>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

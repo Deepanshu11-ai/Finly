@@ -1,82 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Insurance AI</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Insurance AI Assistant 🧠</h2>
+<div class="container">
+    <div class="card">
+        <h2>Login</h2>
 
-<!-- LOGIN -->
-<h3>Login</h3>
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
+        <input id="email" placeholder="Email"><br>
+        <input id="password" type="password" placeholder="Password"><br>
 
-<hr>
+        <button onclick="login()">Login</button>
 
-<!-- UPLOAD -->
-<h3>Upload Policy</h3>
-<input type="file" id="file">
-<button onclick="upload()">Upload</button>
+        <p id="msg"></p>
+    </div>
+</div>
 
-<hr>
-
-<!-- CHAT -->
-<h3>Ask Question</h3>
-<input id="question" placeholder="Ask about your policy">
-<button onclick="ask()">Ask</button>
-
-<p id="answer"></p>
-
-<script>
-let token = "";
-
-async function login() {
-    const res = await fetch("http://127.0.0.1:8000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `email=${email.value}&password=${password.value}`
-    });
-
-    const data = await res.json();
-    token = data.access_token;
-    alert("Logged in!");
-}
-
-async function upload() {
-    const fileInput = document.getElementById("file");
-
-    let formData = new FormData();
-    formData.append("file", fileInput.files[0]);
-
-    await fetch("http://127.0.0.1:8000/upload", {
-        method: "POST",
-        headers: {
-            "Authorization": "Bearer " + token
-        },
-        body: formData
-    });
-
-    alert("Uploaded!");
-}
-
-async function ask() {
-    const q = document.getElementById("question").value;
-
-    const res = await fetch("http://127.0.0.1:8000/chat", {
-        method: "POST",
-        headers: {
-            "Authorization": "Bearer " + token,
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `question=${q}`
-    });
-
-    const data = await res.json();
-    document.getElementById("answer").innerText = data.answer;
-}
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
