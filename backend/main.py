@@ -1,23 +1,24 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.routes import auth, upload, documents
+# ✅ since you're inside backend folder
+from routes import auth, upload, documents, query
 
 app = FastAPI(
     title="AI Insurance Backend",
     version="1.0.0"
 )
 
-# ---------------- CORS (IMPORTANT for frontend) ----------------
+# ---------------- CORS ----------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # later restrict this
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# ---------------- HEALTH CHECK ----------------
+# ---------------- HEALTH ----------------
 @app.get("/")
 def root():
     return {"message": "Backend running successfully 🚀"}
@@ -27,10 +28,7 @@ def health():
     return {"status": "ok"}
 
 # ---------------- ROUTES ----------------
-app.include_router(upload.router, prefix="", tags=["Upload"])
-app.include_router(documents.router, prefix="", tags=["Documents"])
-from routes import auth, upload, documents
-
-app.include_router(auth.router)
-app.include_router(upload.router)
-app.include_router(documents.router)
+app.include_router(auth.router, tags=["Auth"])
+app.include_router(upload.router, tags=["Upload"])
+app.include_router(documents.router, tags=["Documents"])
+app.include_router(query.router, tags=["Query"])

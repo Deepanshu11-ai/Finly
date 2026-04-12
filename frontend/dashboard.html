@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Insurance AI Dashboard 🧠</h1>
+    <div class="navbar-right">
+        <span id="userEmail"></span>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- LEFT COLUMN -->
+<div class="left">
+    <!-- Upload -->
+    <div class="card">
+        <h3>📄 Upload Policy</h3>
+        <input type="file" id="file" accept=".pdf,.txt,.doc,.docx"><br>
+        <button onclick="upload()">Upload Document</button>
+        <p id="uploadMsg"></p>
+    </div>
+</div>
+
+<!-- RIGHT COLUMN -->
+<div class="right">
+    <!-- Policy Overview -->
+    <div class="card">
+        <h3>📊 Policy Overview</h3>
+        <div id="covered" class="card" style="background: #d4edda; margin: 10px 0;"></div>
+        <div id="not-covered" class="card" style="background: #f8d7da; margin: 10px 0;"></div>
+        <div id="conditions" class="card" style="background: #fff3cd; margin: 10px 0;"></div>
+    </div>
+
+    <!-- What-If Simulator -->
+    <div class="card">
+        <h3>⚡ What-If Simulator</h3>
+        <input id="scenario" placeholder="e.g. I got hospitalized after 20 days">
+        <button onclick="simulate()">Simulate</button>
+        <div id="simulation-result"></div>
+    </div>
+
+    <!-- Ask Question -->
+    <div class="card">
+        <h3>💬 Ask Question</h3>
+        <input id="question" placeholder="Ask something about your policy"><br>
+        <button onclick="ask()">Ask</button>
+        <div id="answer" class="answer-box"></div>
+    </div>
+</div>
+
+</div></div>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Insurance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🧠 AI Insurance Dashboard</h1>
+
+<div id="auth">
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<div id="app" style="display:none;">
+
+  <div class="container">
+
+    <!-- LEFT -->
+    <div class="left">
+      <h2>📤 Upload</h2>
+      <input type="file" id="file">
+      <button onclick="upload()">Upload</button>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+      <!-- 🟢 POLICY OVERVIEW -->
+      <h2>📊 Policy Overview</h2>
+
+      <div id="covered" class="card green"></div>
+      <div id="not-covered" class="card red"></div>
+      <div id="conditions" class="card yellow"></div>
+
+      <hr>
+
+      <!-- 🔵 ASK -->
+      <h2>💬 Ask Question</h2>
+
+      <input id="query" placeholder="Ask your scenario...">
+      <button onclick="ask()">Ask</button>
+
+      <div id="query-result"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
