@@ -134,3 +134,33 @@ button:disabled {
   margin-top: 10px;
   min-height: 40px;
 }
+
+/* Score Display Styling */
+#scoreValue {
+  margin: 15px 0;
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#scoreLabel {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+#scoreReasons {
+  list-style-position: inside;
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+#scoreReasons li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: #333;
+  font-size: 14px;
+}

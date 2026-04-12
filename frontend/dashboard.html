@@ -37,7 +37,17 @@
         <div id="not-covered" class="card" style="background: #f8d7da; margin: 10px 0;"></div>
         <div id="conditions" class="card" style="background: #fff3cd; margin: 10px 0;"></div>
     </div>
-
+    <div class="card">
+  <h3>🧪 Hidden Clause Detector</h3>
+  <button onclick="detectClauses()">Scan Policy</button>
+  <div id="hidden-results"></div>
+</div>
+<div class="card">
+    <h2>📊 Policy Score</h2>
+    <h1 id="scoreValue">--</h1>
+    <p id="scoreLabel"></p>
+    <ul id="scoreReasons"></ul>
+</div>
     <!-- What-If Simulator -->
     <div class="card">
         <h3>⚡ What-If Simulator</h3>

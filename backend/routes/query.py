@@ -36,3 +36,16 @@ def simulate(data: dict, user_id: str = Depends(get_current_user)):
     result = generate_query_answer(query_text, chunks)
 
     return result
+
+from services.query_service import detect_hidden_clauses
+@router.get("/hidden-clauses")
+def hidden_clauses(user_id: str = Depends(get_current_user)):
+    chunks = retrieve_chunks(
+        "limits sublimit co-pay deduction waiting period conditions",
+        user_id,
+        limit=15
+    )
+
+    result = detect_hidden_clauses(chunks)
+
+    return result
