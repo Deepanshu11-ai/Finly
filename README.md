@@ -1,174 +1,135 @@
-# 🛡️ PolicyPilot
+# PolicyPilot
 
-> **AI-powered insurance analysis platform** — transform complex policy documents into clear, actionable insights.
+Insurance policies are dense, opaque, and full of traps. PolicyPilot turns any PDF into plain-language coverage summaries, flags risky clauses, simulates real-life claims, and predicts approval — before you need to file.
 
-PolicyPilot helps users understand, evaluate, and compare insurance policies with confidence. It leverages advanced AI to extract coverage details, detect hidden clauses, simulate real-life scenarios, and predict claim approval likelihood — turning dense legal documents into plain-language decisions.
-
----
-
-## 🚀 Features
-
-| Feature                     | Description                                                         |
-| --------------------------- | ------------------------------------------------------------------- |
-| **Coverage Analysis**       | Automatically extracts what is and isn't covered by a policy        |
-| **Ask AI**                  | Natural language Q&A directly over your uploaded policy documents   |
-| **Scenario Simulation**     | Test real-life scenarios against policy terms before filing a claim |
-| **Claim Prediction (ML)**   | Predicts claim approval probability using a trained ML model        |
-| **Hidden Clause Detection** | Flags risky or ambiguous clauses buried in fine print               |
-| **Policy Comparison**       | Side-by-side intelligent comparison across multiple policies        |
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Django](https://img.shields.io/badge/Django-Backend-green)
+![AI](https://img.shields.io/badge/AI-RAG%20%2B%20ML-orange)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ---
 
-## ⚙️ Tech Stack
+## What it does
 
-### 🖥 Backend
-
-* Django
-* Django REST Framework
-
-### 🎨 Frontend
-
-* HTML
-* CSS
-* JavaScript
-
-### 🤖 AI / ML
-
-* LangChain (RAG pipeline)
-* HuggingFace Embeddings
-* Scikit-learn (ML model)
-
-### 🧠 Infrastructure
-
-* ChromaDB (Vector Database)
-* Groq API (LLaMA 3 for LLM tasks)
+| Feature | Description |
+|---|---|
+| **Coverage Analysis** | Extracts what's covered, excluded, and conditional — structured, scannable, and plain-English. |
+| **Ask AI** | Natural language Q&A over your uploaded policy. Ask anything, get grounded answers. |
+| **Scenario Simulation** | Describe a situation. See whether it's covered — before you file. |
+| **Claim Prediction** | ML model estimates approval likelihood based on your scenario and policy terms. |
+| **Hidden Clause Detection** | Surfaces ambiguous, restrictive, or risky language buried in the fine print. |
+| **Policy Comparison** | Upload multiple policies. Get a side-by-side breakdown of what each one actually offers. |
 
 ---
 
-## 🧠 Architecture
+## Architecture
 
 ```
-PDF Upload → Chunking & Embedding (HuggingFace)
+PDF Upload → Chunk & Embed (HuggingFace)
                       ↓
             Vector Store (ChromaDB)
                       ↓
-         RAG + LLM Reasoning (Groq / LLaMA 3)
+       RAG + LLM Reasoning (Groq / LLaMA 3)
                       ↓
-         ML Prediction (Scikit-learn Model)
+        ML Prediction (scikit-learn)
 ```
 
 ---
 
-## 🔗 APIs & Integrations
+## Stack
 
-* **Groq API** → LLM reasoning, Q&A, extraction, explanation
-* **HuggingFace** → Embeddings for semantic search
-* **ChromaDB** → Vector storage & retrieval
+**Backend** — Django, Django REST Framework
+
+**Frontend** — HTML, CSS, JavaScript
+
+**AI / ML** — LangChain, HuggingFace Embeddings, scikit-learn
+
+**Infrastructure** — ChromaDB, Groq API (LLaMA 3)
 
 ---
 
-## ⚙️ 🚀 Installation & Setup
+## API Endpoints
 
-> ⚡ Setup takes less than 5 minutes.
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/upload-policy/` | Upload a policy PDF |
+| `GET` | `/api/coverage/` | Get coverage details |
+| `POST` | `/api/ask/` | Ask a question about the policy |
+| `POST` | `/api/simulate/` | Test a real-life scenario |
+| `POST` | `/api/claim-predict/` | Estimate claim approval probability |
+| `GET` | `/api/hidden/` | Detect hidden or risky clauses |
+| `POST` | `/api/compare/` | Compare multiple policies |
 
-### 1. Clone the Repository
+---
+
+## Quick Setup
+
+> Setup takes under 5 minutes.
+
+**1. Clone the repo**
 
 ```bash
 git clone https://github.com/Deepanshu11-ai/PolicyPilot.git
 cd PolicyPilot
 ```
 
----
-
-### 2. Create & Activate Virtual Environment
+**2. Create & activate a virtual environment**
 
 ```bash
 python -m venv .venv
-
-# macOS / Linux
-source .venv/bin/activate
-
-# Windows
-.venv\Scripts\activate
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 ```
 
----
-
-### 3. Install Dependencies
+**3. Install dependencies**
 
 ```bash
-pip install django djangorestframework langchain langchain-community langchain-core langchain-groq chromadb sentence-transformers scikit-learn pandas numpy pypdf python-dotenv
+pip install django djangorestframework langchain langchain-community \
+  langchain-core langchain-groq chromadb sentence-transformers \
+  scikit-learn pandas numpy pypdf python-dotenv
 ```
 
----
-
-### 4. Run Backend Server
+**4. Start the backend**
 
 ```bash
 cd insurance_ai
 python manage.py runserver
 ```
 
----
-
-### 5. Run Frontend (New Terminal)
+**5. Start the frontend** *(new terminal)*
 
 ```bash
-cd PolicyPilot
-.venv\Scripts\activate   # or source .venv/bin/activate
 cd insurance_ai/frontend
-npm install
-npm start
+npm install && npm start
 ```
----
-## 🔗 API Endpoints
-
-- `/api/upload-policy/` → Upload policy  
-- `/api/coverage/` → Get coverage details  
-- `/api/ask/` → Ask questions  
-- `/api/simulate/` → Scenario simulation  
-- `/api/claim-predict/` → ML prediction  
-- `/api/hidden/` → Hidden clauses  
-- `/api/compare/` → Compare policies  
----
-![Python](https://img.shields.io/badge/Python-3.10-blue)
-![Django](https://img.shields.io/badge/Django-Backend-green)
-![AI](https://img.shields.io/badge/AI-RAG%20%2B%20ML-orange)
-## 🧪 How to Use
-
-1. **Upload Policy**
-   Upload any insurance policy document (PDF).
-
-2. **Set Active Policy**
-   Select the uploaded policy to start analysis.
-
-3. **Explore Features**
-
-   * **Coverage Analysis** → View covered, not covered, and conditions
-   * **Ask AI** → Ask questions about the policy in natural language
-   * **Scenario Simulator** → Test real-life scenarios
-   * **Claim Predictor** → Estimate approval probability
-   * **Hidden Clauses** → Identify risky or unclear clauses
-   * **Policy Comparison** → Compare multiple policies side-by-side
-
-4. **Interpret Results**
-   Use AI-generated insights and predictions to make informed decisions.
 
 ---
 
-## 📁 Project Structure
+## How to Use
+
+1. **Upload a policy** — upload any insurance policy as a PDF.
+2. **Set it as active** — select the policy to begin analysis.
+3. **Explore the tools:**
+   - **Coverage Analysis** — see what's covered, excluded, and conditional
+   - **Ask AI** — ask questions in plain language
+   - **Scenario Simulator** — test whether a specific situation is covered
+   - **Claim Predictor** — estimate your approval probability
+   - **Hidden Clauses** — find risky or unclear language
+   - **Policy Comparison** — compare multiple policies side by side
+4. **Make a decision** — use the AI-generated insights to act with confidence.
+
+---
+
+## Project Structure
 
 ```
 PolicyPilot/
 ├── core/
 │   ├── ml/
 │   ├── services/
-│   ├── views.py
-│
+│   └── views.py
 ├── insurance_ai/
 │   ├── settings.py
-│   ├── urls.py
-│
+│   └── urls.py
 ├── templates/
 ├── static/
 ├── frontend/
@@ -179,25 +140,18 @@ PolicyPilot/
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first.
-
----
-## 👨‍💻 Authors
-
-- Deepanshu  
-- Himanshu
-- Himani
-- Sanvi
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
 
 ---
 
-## 🎯 Tagline
+## Authors
 
-> “We don’t just help you read policies — we help you make smarter decisions.”
+Deepanshu · Himanshu · Himani · Sanvi
+
+---
+
+## License
+
+Licensed under the [MIT License](LICENSE).
