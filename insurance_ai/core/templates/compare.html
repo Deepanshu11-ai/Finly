@@ -1,24 +1,127 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compare Policies</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
+  <!-- Background Orbs -->
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
 
-<h1>Compare Policies ⚔️</h1>
+  <div class="container">
+    <!-- Header -->
+    <header class="header animate-up delay-1">
+      <h1 class="logo">⚔️ Compare Policies</h1>
+      <p class="subtitle">Find the best policy for you</p>
+    </header>
 
-<label>Policy 1:</label>
-<input type="number" id="p1">
+    <!-- Navigation -->
+    <div class="nav-wrapper animate-up delay-2">
+      <nav class="nav-bar">
+        <a href="/" class="nav-btn">← Back to Dashboard</a>
+      </nav>
+    </div>
 
-<label>Policy 2:</label>
-<input type="number" id="p2">
+    <!-- Main Content -->
+    <main class="dashboard animate-up delay-3">
 
-<button onclick="compare()">Compare</button>
+      <!-- Compare Section -->
+      <section class="card-section col-span-12">
+        <h2 class="section-title"><span class="section-icon">🔍</span> Policy Comparison</h2>
 
-<pre id="result"></pre>
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 2rem; width: 100%;">
+          <div>
+            <label for="p1"
+              style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: var(--text-secondary);">Policy
+              1</label>
+            <input type="number" id="p1" placeholder="Enter Policy ID" class="input-field">
+          </div>
+          <div>
+            <label for="p2"
+              style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: var(--text-secondary);">Policy
+              2</label>
+            <input type="number" id="p2" placeholder="Enter Policy ID" class="input-field">
+          </div>
+        </div>
 
-<script src="{% static 'main.js' %}"></script>
+        <button onclick="compare()" class="btn btn-primary"
+          style="width: 100%; justify-content: center; margin-bottom: 2rem;">Compare Policies</button>
 
+        <!-- Results -->
+        <div id="result" class="result-box" style="margin-top:0;">
+          <p class="placeholder-text">Enter two policy IDs and click "Compare Policies" to see the results</p>
+        </div>
+      </section>
+
+      <!-- Comparison Details -->
+      <section class="card-section col-span-12" id="comparison-details" style="display: none; margin-top: 2rem;">
+        <h2 class="section-title"><span class="section-icon">⚖️</span> Detailed Comparison</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; width:100%;">
+          <div class="comparison-column"
+            style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid var(--glass-border);">
+            <h3 class="comparison-title" id="policy1-title"
+              style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem;">Policy 1</h3>
+            <div class="comparison-content" id="policy1-content"
+              style="color: var(--text-secondary); line-height: 1.7;"></div>
+          </div>
+          <div class="comparison-column"
+            style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid var(--glass-border);">
+            <h3 class="comparison-title" id="policy2-title"
+              style="color: var(--secondary); margin-bottom: 1rem; font-size: 1.25rem;">Policy 2</h3>
+            <div class="comparison-content" id="policy2-content"
+              style="color: var(--text-secondary); line-height: 1.7;"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Insurance AI. Making insurance simple and transparent.</p>
+    </footer>
+  </div>
+
+  <script src="{% static 'main.js' %}"></script>
+  <script src="{% static 'compare.js' %}"></script>
 </body>
+
+</html>
+
+</style>
+</head>
+
+<body>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">🚀 Insurance AI</div>
+    <nav class="nav-menu">
+      <a href="index.html" class="nav-item"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="compare.html" class="nav-item active"><span class="nav-icon">⚔️</span> Compare Policies</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="main-content">
+    <div class="dashboard-wrapper">
+      <div class="dashboard-grid">
+
+      </div>
+    </div>
+  </main>
+
+  <script src="../static/main.js"></script>
+  <script src="../static/compare.js"></script>
+</body>
+
 </html>

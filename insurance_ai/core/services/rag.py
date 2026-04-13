@@ -47,10 +47,11 @@ def process_pdf(file_path, policy_id):
 # ❓ ASK
 # =========================
 def ask_question(query, policy_id=1):
-    context = get_context(query, policy_id)
+    context = get_context(query, policy_id, k=12)
 
     if not context:
-        return "Not mentioned in policy"
+        print(f"⚠️ No context found for policy {policy_id}")
+        return f"Unable to find information in policy {policy_id}. Please ensure the policy is uploaded."
 
     llm = ChatGroq(
         api_key="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",
@@ -58,22 +59,29 @@ def ask_question(query, policy_id=1):
         temperature=0
     )
 
-    prompt = f"""
-You are an insurance assistant.
+    prompt = f"""You are an insurance policy expert helping answer questions about insurance coverage.
 
-Rules:
-- Answer using the context
-- If partially available → answer what is known
-- If not found → say "Not mentioned in policy"
-- Be specific
+Based on the policy text provided, answer the following question accurately and clearly.
 
-Context:
+GUIDELINES:
+- Answer based ONLY on information in the policy text
+- If the answer is found, provide a specific answer with details
+- If partially covered, explain what IS covered and what is NOT
+- If not found, clearly state "This is not mentioned in the policy"
+- Be concise but complete
+
+POLICY TEXT:
 {context}
 
-Question:
+USER QUESTION:
 {query}
 
-Answer:
-"""
+ANSWER:"""
 
-    return llm.invoke(prompt).content
+    try:
+        response = llm.invoke(prompt).content
+        print(f"✅ Answer generated for: {query}")
+        return response
+    except Exception as e:
+        print(f"❌ LLM Error: {e}")
+        return f"Error processing query: {str(e)[:100]}"

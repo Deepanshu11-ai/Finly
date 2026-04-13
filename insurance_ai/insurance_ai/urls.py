@@ -29,4 +29,8 @@ urlpatterns = [
     path('compare-page/', compare_page),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Serve static and media files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) if hasattr(settings, 'STATIC_ROOT') else []
+    urlpatterns += static(settings.STATIC_URL, document_root=str(settings.BASE_DIR / 'core/static'))
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

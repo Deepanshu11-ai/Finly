@@ -56,11 +56,12 @@ from .services.rag import ask_question
 @api_view(['POST'])
 def ask(request):
     query = request.data.get('query')
+    policy_id = request.data.get('policy_id', 1)
 
     if not query:
         return Response({"error": "No query provided"}, status=400)
 
-    answer = ask_question(query)
+    answer = ask_question(query, policy_id)
 
     return Response({
         "query": query,
