@@ -102,32 +102,16 @@ pip install django djangorestframework langchain langchain-community langchain-c
 
 ---
 
-### 4. Setup Backend
+### 4. Run Backend Server
 
 ```bash
 cd insurance_ai
-python manage.py migrate
-```
-
----
-
-### 5. Train ML Model (One-time)
-
-```bash
-python core/ml/train.py
-```
-
----
-
-### 6. Run Backend Server
-
-```bash
 python manage.py runserver
 ```
 
 ---
 
-### 7. Run Frontend (New Terminal)
+### 5. Run Frontend (New Terminal)
 
 ```bash
 cd PolicyPilot
@@ -139,7 +123,7 @@ npm start
 
 ---
 
-### 8. Open Application
+### 6. Open Application
 
 ```
 http://127.0.0.1:8000/
@@ -147,18 +131,25 @@ http://127.0.0.1:8000/
 
 ---
 
-## 🧪 Usage
+## 🧪 How to Use
 
-1. Upload an insurance policy (PDF)
-2. Set it as the active policy
-3. Explore features:
+1. **Upload Policy**
+   Upload any insurance policy document (PDF).
 
-   * Coverage Analysis
-   * Ask AI
-   * Scenario Simulation
-   * Claim Prediction
-   * Hidden Clauses
-   * Policy Comparison
+2. **Set Active Policy**
+   Select the uploaded policy to start analysis.
+
+3. **Explore Features**
+
+   * **Coverage Analysis** → View covered, not covered, and conditions
+   * **Ask AI** → Ask questions about the policy in natural language
+   * **Scenario Simulator** → Test real-life scenarios
+   * **Claim Predictor** → Estimate approval probability
+   * **Hidden Clauses** → Identify risky or unclear clauses
+   * **Policy Comparison** → Compare multiple policies side-by-side
+
+4. **Interpret Results**
+   Use AI-generated insights and predictions to make informed decisions.
 
 ---
 
@@ -168,7 +159,6 @@ http://127.0.0.1:8000/
 PolicyPilot/
 ├── core/
 │   ├── ml/
-│   │   └── train.py
 │   ├── services/
 │   ├── views.py
 │
