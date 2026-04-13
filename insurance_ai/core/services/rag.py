@@ -13,34 +13,60 @@ BASE_DB_PATH = "vector_db"
 # 📥 PROCESS PDF (MISSING FUNCTION FIX)
 # =========================
 def process_pdf(file_path, policy_id):
-    db_path = os.path.join(BASE_DB_PATH, f"policy_{policy_id}")
-    os.makedirs(db_path, exist_ok=True)
+    """
+    Process a PDF file and create a ChromaDB vector database.
+    
+    Args:
+        file_path: Path to the PDF file
+        policy_id: ID to assign to the policy
+        
+    Returns:
+        Number of chunks created
+        
+    Raises:
+        Exception: If PDF processing fails at any step
+    """
+    try:
+        db_path = os.path.join(BASE_DB_PATH, f"policy_{policy_id}")
+        os.makedirs(db_path, exist_ok=True)
+        print(f"📂 Created directory: {db_path}")
 
-    loader = PyPDFLoader(file_path)
-    documents = loader.load()
+        print(f"📄 Loading PDF: {file_path}")
+        loader = PyPDFLoader(file_path)
+        documents = loader.load()
+        print(f"✅ Loaded {len(documents)} pages from PDF")
 
-    splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=100
-    )
+        print(f"🔄 Splitting documents into chunks...")
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=500,
+            chunk_overlap=100
+        )
+        chunks = splitter.split_documents(documents)
+        print(f"✅ Created {len(chunks)} chunks")
 
-    chunks = splitter.split_documents(documents)
+        print(f"🧠 Generating embeddings...")
+        embeddings = HuggingFaceEmbeddings(
+            model_name="all-MiniLM-L6-v2"
+        )
 
-    embeddings = HuggingFaceEmbeddings(
-        model_name="all-MiniLM-L6-v2"
-    )
+        print(f"💾 Creating ChromaDB vector store...")
+        db = Chroma.from_documents(
+            documents=chunks,
+            embedding=embeddings,
+            persist_directory=db_path
+        )
 
-    db = Chroma.from_documents(
-        documents=chunks,
-        embedding=embeddings,
-        persist_directory=db_path
-    )
+        print(f"💾 Persisting database...")
+        db.persist()
 
-    db.persist()
-
-    print(f"✅ DB created at {db_path}")
-
-    return len(chunks)
+        print(f"✅ DB created at {db_path}")
+        return len(chunks)
+        
+    except Exception as e:
+        print(f"❌ Error processing PDF: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        raise
 
 
 # =========================

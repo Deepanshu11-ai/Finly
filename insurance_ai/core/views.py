@@ -28,13 +28,24 @@ def upload_policy(request):
     if not file:
         return Response({"error": "file required"}, status=400)
 
-    # 🔥 AUTO GENERATE POLICY ID
+    # 🔥 AUTO GENERATE POLICY ID (Find the highest existing ID)
     base_path = "vector_db"
     os.makedirs(base_path, exist_ok=True)
 
+    # Extract numeric IDs from existing policy directories
     existing = [d for d in os.listdir(base_path) if d.startswith("policy_")]
-
-    new_id = len(existing) + 1
+    if existing:
+        # Extract numbers from policy_X format and find max
+        policy_ids = []
+        for d in existing:
+            try:
+                policy_num = int(d.split("_")[1])
+                policy_ids.append(policy_num)
+            except (IndexError, ValueError):
+                continue
+        new_id = max(policy_ids) + 1 if policy_ids else 1
+    else:
+        new_id = 1
 
     # Save file
     file_path = os.path.join("media", file.name)
@@ -44,13 +55,20 @@ def upload_policy(request):
         for chunk in file.chunks():
             f.write(chunk)
 
-    # Process
-    process_pdf(file_path, new_id)
-
-    return Response({
-        "message": "uploaded successfully",
-        "policy_id": new_id
-    })
+    # Process PDF with error handling
+    try:
+        chunks_count = process_pdf(file_path, new_id)
+        return Response({
+            "message": "uploaded successfully",
+            "policy_id": new_id,
+            "chunks": chunks_count
+        })
+    except Exception as e:
+        print(f"❌ Error processing PDF for policy {new_id}: {str(e)}")
+        return Response({
+            "error": f"Failed to process PDF: {str(e)}",
+            "policy_id": new_id
+        }, status=400)
 from .services.rag import ask_question
 
 @api_view(['POST'])
