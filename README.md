@@ -101,24 +101,18 @@ source .venv/bin/activate
 ### 3. Install Dependencies
 
 ```bash
+cd insurance_ai
+
 pip install -r requirements.txt
 ```
 
-### 4. Configure Environment Variables
-
-Create a `.env` file in the project root:
-
-```env
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-### 5. Apply Database Migrations
+### 4. Apply Database Migrations
 
 ```bash
 python manage.py migrate
 ```
 
-### 6. Train the ML Model
+### 5. Train the ML Model
 
 > **One-time step.** Required before using the Claim Prediction feature.
 
@@ -126,7 +120,7 @@ python manage.py migrate
 python core/ml/train.py
 ```
 
-### 7. Start the Development Server
+### 8. Start the Development Server
 
 ```bash
 python manage.py runserver
