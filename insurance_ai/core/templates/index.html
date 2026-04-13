@@ -19,31 +19,18 @@
 
     <!-- NAVIGATION -->
     <nav class="nav-bar animate-fade-in">
-      <button class="nav-btn active" onclick="scrollToSection('upload')">📄 Upload</button>
+      <button class="nav-btn active" onclick="scrollToSection('upload-file')">📄 Upload</button>
       <button class="nav-btn" onclick="scrollToSection('coverage')">📊 Coverage</button>
       <button class="nav-btn" onclick="scrollToSection('ask')">❓ Ask</button>
       <button class="nav-btn" onclick="scrollToSection('scenario')">⚡ Scenario</button>
       <button class="nav-btn" onclick="scrollToSection('score')">⭐ Score</button>
       <button class="nav-btn" onclick="scrollToSection('hidden')">⚠️ Hidden</button>
       <button class="nav-btn" onclick="scrollToSection('claim')">🤖 Claim</button>
+      <a href="/compare-page/" class="nav-btn">⚔️ Compare</a>
     </nav>
 
     <!-- MAIN DASHBOARD -->
     <main class="dashboard animate-fade-in">
-
-      <!-- Active Policy & Upload Section -->
-      <section class="card" id="upload">
-        <div class="card-header">
-          <h2 class="section-title"><span class="section-icon">⚙️</span> Active Policy</h2>
-        </div>
-        <div class="control-group vertical">
-          <input type="number" id="active_policy" placeholder="Enter Policy ID" class="input-field">
-          <button onclick="setPolicy()" class="btn btn-primary">Set Active Policy</button>
-        </div>
-        <p id="current_policy" style="color: var(--text-secondary); margin-top: 1rem;">
-          No active policy selected
-        </p>
-      </section>
 
       <!-- Upload Policy Section -->
       <section class="card" id="upload-file">
@@ -94,8 +81,8 @@
         <div class="card-header">
           <h2 class="section-title"><span class="section-icon">⚡</span> Scenario Simulator</h2>
         </div>
-        <div class="control-group vertical" id="scenario">
-          <input type="text" id="scenario" placeholder="Describe a hypothetical scenario..."
+        <div class="control-group vertical">
+          <input type="text" id="scenario-input" placeholder="Describe a hypothetical scenario..."
             class="input-field">
           <button onclick="simulate()" class="btn btn-primary">Run Simulation</button>
         </div>
@@ -180,7 +167,7 @@
 
     // Add active state to nav buttons on scroll
     window.addEventListener('scroll', () => {
-      const sections = ['upload', 'coverage', 'ask', 'scenario', 'score', 'hidden', 'claim'];
+      const sections = ['upload-file', 'coverage', 'ask', 'scenario', 'score', 'hidden', 'claim'];
       sections.forEach(id => {
         const element = document.getElementById(id) || document.querySelector('[id*="' + id + '"]');
         if (element) {

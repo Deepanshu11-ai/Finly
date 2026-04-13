@@ -149,7 +149,7 @@ async function ask() {
 async function simulate() {
   if (!ACTIVE_POLICY) return alert("Set policy first");
 
-  const scenario = document.getElementById("scenario").value;
+  const scenario = document.getElementById("scenario-input").value;
 
   if (!scenario) {
     alert("Enter scenario");
